@@ -1,10 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css"
 
-
-import Login from './Components/Login/login';
 import Todo from './Components/Todo/Todo';
+import Sidebar from './Components/Sidebar/Sidebar';
+import { Fragment } from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
 
 
 
@@ -14,7 +14,14 @@ const App = () => {
   
 
   return(
-    <h1>App</h1>
+    <Fragment>
+      <Container fluid>
+        <Row>
+          <Col md={3}><Sidebar /></Col>
+          <Col><Todo /></Col>
+        </Row>
+      </Container>
+    </Fragment>
   )
 
 }

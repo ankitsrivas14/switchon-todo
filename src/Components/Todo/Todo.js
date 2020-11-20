@@ -1,11 +1,18 @@
-import React from "react"
+import React, { Fragment } from "react"
 import { Redirect } from "react-router-dom"
+
+import {Button} from "react-bootstrap"
 
 const Todo = () => {
 
-    //{localStorage.user.email ? <Redirect to="/login" /> : " " }
+    const handleClick = () => {
+        
+    }
+
     return(
-        <Redirect to="/login" />
+        <Fragment>
+            <Button onClick={handleClick} variant="success" size="sm">New Task</Button>
+        </Fragment>
     )
 }
 
