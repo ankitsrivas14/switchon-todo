@@ -8,14 +8,15 @@ import NotFound from "./Components/NotFound"
 
 import PublicRoute from "./Containers/PublicRoute"
 import PrivateRoute from "./Containers/PrivateRoute"
-import AddTodo from './Components/Todo/AddTodo';
+import AddTodo from './Components/Todo/TodoForm';
+import TodoForm from './Components/Todo/TodoForm';
 
 export const Routing = () => (
     <Router>
       <Switch>
         <PrivateRoute exact path="/"><App /></PrivateRoute>
         <PublicRoute exact path="/login"><Login /></PublicRoute>
-        <PrivateRoute path="/create"><AddTodo /></PrivateRoute>
+        <PrivateRoute path="/create"><TodoForm /></PrivateRoute>
         <Route exact path="/logout" component={Logout} />
         <Route component={NotFound} />
       </Switch>
