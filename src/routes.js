@@ -8,8 +8,8 @@ import NotFound from "./Components/NotFound"
 
 import PublicRoute from "./Containers/PublicRoute"
 import PrivateRoute from "./Containers/PrivateRoute"
-import AddTodo from './Components/Todo/TodoForm';
-import TodoForm from './Components/Todo/TodoForm';
+import AddTodo from './Components/Task/TaskForm';
+import TodoForm from './Components/Task/TaskForm';
 
 export const Routing = () => (
     <Router>

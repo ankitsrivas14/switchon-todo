@@ -1,10 +1,16 @@
-import React, { useState } from "react"
-import { Form, InputGroup, Button, FormControl, ToggleButton, ToggleButtonGroup } from "react-bootstrap"
+import React, { useState,useContext } from "react"
 import { v4 } from "uuid"
 
+import {ADD_TASK} from "../../Context/action.types"
+import {TaskContext} from "../../Context/TaskContext"
+
 import { RiDeleteBin7Line } from "react-icons/ri"
+import { Form, InputGroup, Button, FormControl, ToggleButton, ToggleButtonGroup } from "react-bootstrap"
 
 const TodoForm = () => {
+
+    const {dispatch} = useContext(TaskContext)
+
     const [task, setTask] = useState({
             id: v4(),
             name: "",
@@ -74,6 +80,26 @@ const TodoForm = () => {
         
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        if(
+            task.name !== "" && 
+            task.description !== "" && 
+            task.branch !== "" && 
+            task.date !== "" && 
+            (task.tags).length !== 0 &&
+            task.subtasks[0].value !== ""
+        ){
+            dispatch({
+                type: ADD_TASK,
+                payload: task
+            })
+        }
+        else{
+            return alert("Form is incomplete")
+        }
+    }
+
     const showConsole = () => {
         console.log(task)
     }
@@ -100,7 +126,7 @@ const TodoForm = () => {
                 <Form.Check type="checkbox" value="official" label="Official" onChange={e => handleTag(e)} />
                 <Form.Check type="checkbox" value="miscellaneous" label="Miscellaneous" onChange={e => handleTag(e)} />
             </div>
-            Select Date <input type="text" placeholder="Enter Date" />
+            Select Date <input type="text" placeholder="Enter Date" onChange={e => setTask({...task,date: e.target.value})} />
             {task.subtasks.map((subtask) => {
                 return (
                     <InputGroup key={subtask.subId} className="mb-3">
@@ -108,13 +134,14 @@ const TodoForm = () => {
                             <InputGroup.Checkbox onChange={e => markSubtaskDone(e, subtask.subId)} />
                         </InputGroup.Prepend>
                         <FormControl type="text" value={subtask.value} onChange={e => handleSubtask(e, subtask.subId)} />
-                        <div onClick={() => removeSubtaskfield(subtask.subId)}><RiDeleteBin7Line /></div>
+                        <div onClick={() => removeSubtaskfield(subtask.subId)}><span><RiDeleteBin7Line /></span></div>
                     </InputGroup>
                 )
             })}
 
             <Button onClick={addSubtaskfield} variant="link">+ New Sub Task</Button>
-            <Button onClick={showConsole} variant="success">Console</Button>
+            <Button onClick={handleSubmit} type="submit" variant="success">Create</Button>
+            <Button onClick={showConsole} variant="warning">Console</Button>
 
 
         </Form>
