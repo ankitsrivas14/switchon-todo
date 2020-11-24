@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react"
+import React, {useState } from "react"
 import {Container,Row,Col, Button,FormGroup,InputGroup} from "react-bootstrap"
 import { AiOutlineMail } from "react-icons/ai"
 
@@ -31,7 +31,6 @@ const LoginForm = () => {
     }
 
     return(
-        <Fragment>
             <Container fluid>
                 <Row>
                     <Col style={{backgroundColor:"#28AE60", height:"100vh"}}>
@@ -63,7 +62,6 @@ const LoginForm = () => {
                     </Col>
                 </Row>
             </Container>
-        </Fragment>
     )
 }
 

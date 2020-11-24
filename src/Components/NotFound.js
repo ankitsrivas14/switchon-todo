@@ -2,7 +2,7 @@ import React from "react"
 
 const NotFound = () => {
     return(
-        <h1>Not Found</h1>
+        <h1><a href="../../">Home</a></h1>
     )
 }
 
